@@ -1,0 +1,44 @@
+v.0.0.1
+- Support for local first (only) mode
+- Minimalist patches table
+- Minimalist UI
+Features:
+- Minimal UI (FileBrowser pop up, textbox for output etc, dropdowns)
+- Open ISO and check if contained in List of known hashes
+- List available Versions to which the ISO can be patched (both with local files + upstream files)
+- Download patch if necessary and apply it
+- Retrieve new config files and list from upstream
+- Use simple csv tables to manage data
+- (Maybe minimal CLI)
+- Make application self updateable (TUF)
+- Basic error messages
+- Minimal config file
+- Update database / config files from upstream
+    - Automatically look for updates -> Ask to apply (Use hash or diff to detect changes)
+- Iterate over contents of patches to determine locally available patches
+
+
+Layout:
+- Patches Directory (Contains Folders which contain xdelta patch files at top level)
+- ServerSide: Patches should be distributed as zip archive with exactly one xdelta file sitting at the top level, rest is to users likeing
+
+CSV-Database files
+-- Known ISOs
+    - hash for known ISO; Name; (optional: Minimal Description)
+-- Patches File
+    - BaseImageHash; TargetImageHash; PatchDeltaHash; List of possible upstreams (optional: DescriptionFiled to make table more human readable (not code used)); (optional: PerPatch notes)
+
+Procedure:
+- Check if ISO in Known ISOs file
+- List Isos into which the image can be patched (local first, then upstream)
+
+
+
+Future Features:
+- Built-In Mod Version Description
+- Patch Notes / Changelog for linear updates
+- Multi Repo Support
+    - Handle different major upstream repos to allow better support for multiple mods
+    - Sensibly merge config / database files
+- Better database file layouts
+- Streamline adding new patches / versions to repository
